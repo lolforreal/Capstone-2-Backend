@@ -16,16 +16,13 @@ if (!MONGO_URI) {
     process.exit(1); // Stop the server if MONGO_URI is missing
 }
 
-// Connect to MongoDB Atlas
-mongoose.connect(MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-.then(() => console.log('✅ MongoDB Connected Successfully'))
-.catch(err => {
-    console.error('❌ MongoDB Connection Error:', err);
-    process.exit(1);
-});
+// ✅ Corrected MongoDB Connection
+mongoose.connect(MONGO_URI)
+    .then(() => console.log('✅ MongoDB Connected Successfully'))
+    .catch(err => {
+        console.error('❌ MongoDB Connection Error:', err);
+        process.exit(1);
+    });
 
 // Middleware
 app.use(cors());
